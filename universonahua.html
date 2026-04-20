@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universo Nahua | Tunatí Zaragoza </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES Y ESTILOS BASE (TEMA PRINCIPAL) ===== */
+        :root {
+            --primary-color: #2E8B57;  /* Verde mar (principal) */
+            --secondary-color: #FF8C00; /* Naranja oscuro */
+            --accent-color: #8B5A2B;   /* Café artesanal */
+            --dark-color: #1A1A1A;     /* Negro suavizado */
+            --light-color: #F5F5F5;
+            --overlay-color: rgba(0, 0, 0, 0.8);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* ===== RESET Y ESTRUCTURA ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Roboto', 'Noto Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--light-color);
+            background: 
+                linear-gradient(var(--overlay-color), var(--overlay-color)),
+                url('https://placehold.co/1920x1080/1A1A1A/333333?text=Fondo+Zaragoza') no-repeat center center/cover fixed;
+        }
+        
+        /* ===== COMPONENTES REUTILIZABLES ===== */
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .section { padding: 4rem 0; }
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-family: 'Noto Serif', serif;
+            margin-bottom: 3rem;
+            color: var(--light-color);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        }
+        .section-title span { border-bottom: 3px solid var(--secondary-color); padding-bottom: 0.5rem; }
+
+        /* ===== HEADER Y NAVEGACIÓN ===== */
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/img/Universo Nahua/header-universo.png') no-repeat center center/cover;
+            color: white;
+            padding: 8rem 0;
+            text-align: center;
+        }
+        .header h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-family: 'Noto Serif', serif; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+        .header p { font-size: 1.25rem; color: rgba(245, 245, 245, 0.9); }
+        .navbar {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .navbar ul { display: flex; justify-content: center; list-style: none; flex-wrap: wrap; }
+        .navbar a { color: white; text-decoration: none; padding: 1rem 1.5rem; display: block; font-weight: 500; transition: var(--transition); position: relative; }
+        .navbar a::after { content: ''; position: absolute; bottom: 0.5rem; left: 50%; width: 0; height: 3px; background: var(--secondary-color); transition: var(--transition); transform: translateX(-50%); }
+        .navbar a:hover { color: var(--secondary-color); }
+        .navbar a:hover::after { width: 70%; }
+        
+        /* ===== DISEÑO DE SECCIONES DE CONTENIDO ===== */
+        .content-section {
+            background: rgba(36, 35, 35, 0.9);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            margin-bottom: 4rem;
+        }
+        .content-section h3 {
+            font-family: 'Noto Serif', serif;
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        .content-section p, .content-section li {
+            font-size: 1.1rem;
+            color: rgba(245, 245, 245, 0.9);
+            max-width: 80ch;
+            margin-bottom: 1.5rem;
+        }
+        .content-section .byline {
+            font-style: italic;
+            color: rgba(245, 245, 245, 0.7);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .content-section ul { list-style: none; padding-left: 0; }
+        .content-section ul li { padding-left: 1.5rem; position: relative; }
+        .content-section ul li::before {
+            content: '•';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .content-layout { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
+        .two-columns { grid-template-columns: 1fr 1fr; align-items: center; }
+        @media (max-width: 800px) { .two-columns { grid-template-columns: 1fr; } }
+        
+        /* CARRUSEL DE IMÁGENES */
+        .carousel-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            padding: 2rem 0;
+        }
+        .carousel-track {
+            display: flex;
+            width: calc(320px * 26); /* Ancho de la tarjeta * (número de imágenes * 2) */
+            animation: scroll 60s linear infinite;
+        }
+        .carousel-card {
+            flex-shrink: 0;
+            width: 300px;
+            margin: 0 10px;
+            background: var(--dark-color);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .carousel-card img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-320px * 13)); } /* Ancho de la tarjeta * número de imágenes */
+        }
+        .carousel-container:hover .carousel-track { animation-play-state: paused; }
+
+         /* ESTILOS PARA LA SECCIÓN DE VISITAS HISTÓRICAS */
+    .historical-visits {
+        margin: 3rem 0;
+    }
+    
+    .visit-item {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(255, 140, 0, 0.2);
+    }
+    
+    .visit-year {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--secondary-color);
+        min-width: 80px;
+    }
+    
+    .visit-details h4 {
+        font-size: 1.2rem;
+        color: var(--light-color);
+        margin-bottom: 0.5rem;
+    }
+    
+    .visit-details p {
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+    }
+    
+    .visit-mayor {
+        font-style: italic;
+        color: rgba(245, 245, 245, 0.7);
+        font-size: 0.9rem;
+    }
+
+    /* ESTILOS MEJORADOS */
+    .historical-container {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .historical-list {
+        margin: 2rem 0;
+        padding: 0;
+        width: 100%;
+    }
+    
+    .carousel-container {
+        width: 100%;
+        overflow: hidden;
+        margin: 2rem 0;
+    }
+    
+    .carousel-track {
+        display: flex;
+        animation: scroll 60s linear infinite;
+        width: calc(320px * 18); /* Ajustado para 9 imágenes (9*2) */
+    }
+    
+    .carousel-card {
+        flex: 0 0 300px;
+        margin: 0 10px;
+        background: var(--dark-color);
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+    }
+    
+    .highlight-card {
+        border: 2px solid var(--secondary-color);
+    }
+    
+    .visit-item {
+        display: flex;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(255, 140, 0, 0.2);
+    }
+    
+    .visit-year {
+        min-width: 100px;
+        font-weight: bold;
+        color: var(--secondary-color);
+    }
+    
+    /* Estilos para la visita especial */
+    .special-visit {
+        background: rgba(46, 139, 87, 0.1);
+        border-left: 4px solid var(--secondary-color);
+        padding: 2rem;
+        margin: 3rem 0;
+        border-radius: 0 8px 8px 0;
+    }
+    
+    .special-title {
+        color: var(--secondary-color);
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .cultural-note {
+        font-style: italic;
+        margin: 2rem 0;
+        padding: 1rem;
+        background: rgba(139, 90, 43, 0.1);
+        border-radius: 8px;
+    }
+    
+    .nahuatl-phrase {
+        text-align: center;
+        font-size: 1.1rem;
+        color: var(--accent-color);
+        margin: 1.5rem 0;
+    }
+    
+    .photo-credits {
+        text-align: right;
+        font-size: 0.9rem;
+        color: rgba(245, 245, 245, 0.6);
+    }
+    
+    /* Destacar las tarjetas importantes en el carrusel */
+    .highlight-card {
+        border: 2px solid var(--secondary-color);
+    }
+    
+    .carousel-card p {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        color: var(--light-color);
+    }
+    
+    @media (max-width: 600px) {
+        .visit-item {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .special-visit {
+            padding: 1rem;
+        }
+    }
+
+        /* GALERÍA DE IMÁGENES */
+        .image-gallery { display: grid; gap: 1.5rem; }
+        .ig-2-cols { grid-template-columns: 1fr 1fr; }
+        .ig-6-items { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        .highlight-2x2 { grid-column: span 2; grid-row: span 2; } /* Clase para destacar una imagen */
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+         .gallery-item img:hover { transform: scale(1.05); }
+
+        /* MODAL LIGHTBOX */
+        .image-modal {
+            display: none; position: fixed; z-index: 1001; padding-top: 50px;
+            left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
+            background-color: rgba(0,0,0,0.95);
+        }
+        .image-modal-content {
+            margin: auto; display: block; width: auto;
+            max-width: 90%; max-height: 85vh;
+            animation: zoom 0.6s;
+        }
+        @keyframes zoom { from {transform:scale(0)} to {transform:scale(1)} }
+        .close-modal-img {
+            position: absolute; top: 15px; right: 35px; color: #f1f1f1;
+            font-size: 40px; font-weight: bold; transition: 0.3s;
+        }
+        .close-modal-img:hover, .close-modal-img:focus { color: #bbb; text-decoration: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <h1>Universo Nahua</h1>
+        <p>Historias, arte y memoria de Zaragoza, Veracruz</p>
+    </header>
+    
+    <nav class="navbar">
+        <div class="container">
+             <ul>
+                <li><a href="#resena">Reseña Histórica</a></li>
+                <li><a href="#jicara">Arte en Jícara</a></li>
+                <li><a href="#relatos">Relatos</a></li>
+                <li><a href="#iglesia">La Iglesia</a></li>
+                <li><a href="#pasado">Zaragoza del Pasado</a></li>
+                <li><a href="index.html">Página Principal</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+
+        <section id="resena" class="section">
+            <div class="container">
+                <h2 class="section-title"><span>Reseña Histórica de Zaragoza</span></h2>
+                <div class="content-section">
+                    <div class="content-layout two-columns">
+                        <div>
+                            <h3>Orígenes y Fundación</h3>
+                            <p>En 1865, cuando el México liberal del presidente Benito Juárez y la Francia imperial de Napoleón III se encontraban en guerra, los habitantes de la ranchería de San Isidro Jumuapan, perteneciente al municipio de Oteapan, gestionaron su erección como pueblo.</p>
+                            <p>La ranchería de Jumuapan había sido fundada en la primera mitad del siglo XVIII por un conjunto de familias de San Francisco Oteapan. Ambos pueblos comparten una historia común: el antiguo Oteapan fue fundado originalmente en el actual Pueblo Viejo, ubicado en la desembocadura del río Uxpanapa, frente a la isla de la Concepción. Sin embargo, debido a ataques de piratas, a fines del siglo XVII se estableció en su sitio actual, aunque algunas familias regresaron a su viejo pueblo, pues en 1838 se informaba que habían “unas cuantas milpas de los naturales del pueblo de Oteapan”.</p>
+
+                             <p>Hacia 1831 Oteapan era “un pueblito indígena ubicado a media legua de Chinameca y dos leguas y media de Jáltipan”. Contaba con una legua cuadrada de tierra, tres hatos de ganado mayor y 857 habitantes. Era ya un municipio, gobernado por un alcalde y un síndico. Inicialmente perteneció al cantón de Acayucan y a partir de 1857 del cantón de Minatitlán.</p>
+                        </div>
+                        <div class="image-gallery">
+                            <figure class="gallery-item">
+                                <img src="assets/img/Universo Nahua/reseña.jpg" alt="Eugenio Balmori con la familia Cinta en Zaragoza, 1933" onerror="this.onerror=null;this.src='https://placehold.co/500x600/8B5A2B/FFFFFF?text=Reseña+Histórica'">
+                                <figcaption class="byline" style="font-size:0.9rem; margin-top: 1rem; text-align:left;">
+                                    Fotografía: Eugenio Balmori (vestimenta oscura) con la familia Cinta, en su visita a Zaragoza en 1933. Tomada del libro "Eugenio y Marina" (2002).
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <div>
+                        <h3>Decreto y Legado de un Nombre</h3>
+
+                        <p>En 1862 estalló la guerra de intervención francesa y en la costa de Sotavento se registraron cuatro combates: en Jáltipan (17 de agosto de 1863), Cosoleacaque (18 de octubre de 1863), Tacoteno (5 de marzo de 1864) y en la barra del río Coatzacoalcos (19 de marzo de 1864). Gracias al triunfo de las armas republicanas, la villa de Minatitlán fue desocupada el 22 de marzo de 1864.</p>
+
+                        <p>Un año más tarde, los vecinos de San Isidro Jumuapan solicitaron que su localidad fuera erigida en pueblo. En respuesta, el general de brigada Alejandro García Marcín, Gobernador del Estado y jefe de la Coalición de Oriente, expidió desde Tlacotalpan, la capital provisional de Veracruz y cuartel de las tropas republicanas de la Línea de Sotavento, el decreto fechado el miércoles 9 de agosto de 1865.</p>
+
+                        <p>En su artículo único, el decreto dispuso lo siguiente: “La ranchería de San Isidro Jumapan, en el cantón de Minatitlán, del Estado de Veracruz, queda erigida en pueblo con el nombre de San Isidro de Zaragoza, en conmemoración del héroe mexicano de este nombre”. El decreto equivalió a la creación del municipio, independizándose del de Oteapan, con el derecho de elegir a sus propias autoridades.</p>
+
+                        <p>El pueblo de Jumuapan fue la primera cabecera municipal en el país en llevar el apellido del general Ignacio Zaragoza, quien dirigió a las fuerzas republicanas en la célebre batalla de Puebla (5 de mayo de 1862), falleciendo pocos meses después por la tifoidea. Las otras cabeceras son: General Zaragoza, Nuevo León (1866); Zaragoza, Coahuila (1868); y Zaragoza, San Luis Potosí (1882).</p>
+
+                        <p>En 1868 San Isidro de Zaragoza tenía una población de 300 habitantes y una oficina del Registro Civil. Al año siguiente contaba con 343 habitantes y cuatro funcionarios municipales: dos regidores, un síndico y un juez de paz, así como dos empleados municipales. En 1873 tenía 393 habitantes y una escuela municipal con 15 alumnos, mismos que recibían clases de Lectura, Escritura y Aritmética, atendida por el profesor Domingo Ramírez. </p>
+
+                        <p>La supresión del nombre de su santo patrono, San Isidro Labrador, ocurrió en 1932 durante el conflicto entre la Iglesia católica y el Estado mexicano; y fue consecuencia de la aplicación del decreto Núm. 175 del 12 de agosto de ese año. El decreto otorgó al Gobernador del Estado, Miguel Aguillón Guzmán, “facultades extraordinarias para cambiar paulatinamente de denominación a las poblaciones del Estado que actualmente tiene en su nombre alguna invocación religiosa”. A partir de esa fecha se le empezó a llamar llanamente Zaragoza.</p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="jicara" class="section">
+            <div class="container">
+                <div class="content-section">
+                    <h2 class="section-title"><span>El arte en jícara de Zaragoza</span></h2>
+                    <p class="byline">Por: Héber Azamar (16 de febrero de 2025)</p>
+                    
+                    <h3>Cada pieza, un fragmento del universo</h3>
+                    <p>Más que simples utensilios, las creaciones de Don Erasto Antonio Candelario y su esposa doña Juana Ignacio Santos son portadoras de historias, símbolos y cosmovisión.</p>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-track">
+                            </div>
+                    </div>
+                    
+                    <h3>El inicio de un camino solitario</h3>
+                    <p>Don Erasto comenzó a los 38 años, inspirado por la herencia cultural de sus padres y la necesidad de rescatar el uso de la jícara, desplazada por materiales industriales. Su aprendizaje fue autodidacta, un camino de "prueba y error" que le tomó cinco años dominar. Reconoce que el proyecto no habría sido posible sin el apoyo de su esposa, y juntos han transmitido el oficio a sus hijos.</p>
+                    
+                    <h3>Una lucha contra el olvido</h3>
+                    <p>A pesar de que su trabajo es valorado, Don Erasto ve con tristeza cómo la cultura del consumo rápido desplaza las tradiciones. El problema no es la falta de compradores, sino la pérdida de identidad. Por ello, insiste en la importancia de crear un festival cultural que reúna los oficios en peligro de extinción: "Se necesita tejer esa red, porque si no, estos conocimientos desaparecerán con nosotros”.</p>
+
+                    <h3>Un legado que trasciende fronteras y la esperanza en la educación</h3>
+                    <p>Su arte ha sido exhibido en espacios de renombre como el Museo Anahuacalli y la Cumbre Tajín. A pesar de la falta de apoyo gubernamental para eventos culturales, una luz de esperanza surge de la nueva escuela mexicana, que integra proyectos de rescate de tradiciones. Gracias a esto, alumnos y maestros visitan su taller, permitiendo que las nuevas generaciones valoren su arte.</p>
+                    
+                     <p style="text-align:center; font-style:italic; color: rgba(245, 245, 245, 0.7); margin-top:2rem;">Fotos: Jehu Ramirez / DPA - Xumuapan y Tiangisti Nucha Tamachiwalis</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="relatos" class="section">
+            <div class="container">
+                <div class="content-section">
+                     <h2 class="section-title"><span>Relatos de la tierra de Xumuapan</span></h2>
+                     <div class="content-layout two-columns">
+                          <div>
+                               <h3>La conquista en los pozos comunitarios</h3>
+                               <p>La conquista de la novia en los pozos comunitarios del antiguo Xumuapan, forman parte de los hitos de la vida comunitaria del Zaragoza del pasado. Según las abuelas había entre 4 a 5 pozos comunitarios en el pueblo.</p>
+
+                               <p>En el atardecer o madrugada cuando las muchachas acudían a los pozos comunitarios a buscar agua en los cantaros de barro o ir a bañarse, los muchachos aprovechaban el momento para conquistarlas, se ofrecían a acompañarlas de regreso hasta donde no fueran vistos por los padres de la muchacha. Cuando el muchacho no era del agrado de la muchacha, y no entendía el rechazo amoroso, no se le contestaba o bien se le tiraba el agua encima para que dejará de molestar. Después de la conquista el segundo paso era pedir la mano de la muchacha, si los padres no estaban de acuerdo, la estrategia era “robarla” –es un decir-, porque ya se ponían de acuerdo para la “fuga” e irse a vivir juntos sin el consentimiento de los padres. Había casos donde los padres no permitían que sus hijas decidieran que esposo tener…hechos e historias del antiguo Xumuapan.</p>
+
+                               <p class="byline" style="font-size:0.9rem;">Breve charla con doña Marcelina Santos Cruz, nahua hablante de Xumuapan.</p>
+                          </div>
+                          <div class="image-gallery">
+                               <figure class="gallery-item">
+                                   <img src="assets/img/Universo Nahua/pozo.png" alt="Pozo comunitario" onerror="this.onerror=null;this.src='https://placehold.co/500x500/2E8B57/FFFFFF?text=Pozo'">
+                               </figure>
+                          </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="iglesia" class="section">
+             <div class="container">
+                <div class="content-section">
+                    <h2 class="section-title"><span>Historia del Templo San Isidro Labrador</span></h2>
+
+                    <h2>Makuilpuali xiwi' kua' gichihkih ama' pah teupa San Isidroh Labrador</h2>
+
+                    <p>El 30 de agosto de 1920, fue la elaboración del plano del templo de la parroquia San Isidro Labrador, misma que inicio su construcción el 24 de noviembre de ese mismo año. La edificación del templo de la parroquia representa la figura emblemática del municipio de Zaragoza, Veracruz., antes llamado Xumuapan.</p>
+
+                    <p>La remodelación del templo es el periodo del Pbro. Sergio Mateos Torres, párroco actual de la parroquia San Isidro Labrador.</p>
+
+                    <p>Todos los Presbíteros que han pisado esta hermosa tierra, han aportado su grano de arena en el aspecto material, espiritual y social. Gracias a los trabajos de investigación del Antropólogo y cronista Florentino Cruz Martínez, ha sido posible conocer la historia de Xumuapan, de la iglesia católica y del templo.</p>
+
+
+                     <div class="image-gallery ig-6-items">
+                         <figure class="gallery-item highlight-2x2">
+                             <img src="assets/img/Universo Nahua/iglesia real.jpg" alt="Iglesia real de Zaragoza" onerror="this.onerror=null;this.src='https://placehold.co/600x600/8B5A2B/FFFFFF?text=Iglesia+Real'">
+                         </figure>
+                         <figure class="gallery-item">
+                             <img src="assets/img/Universo Nahua/plano-iglesia1.jpg" alt="Plano de la iglesia 1" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1A1A1A/FFFFFF?text=Plano+1'">
+                         </figure>
+                          <figure class="gallery-item">
+                             <img src="assets/img/Universo Nahua/plano-iglesia2.jpg" alt="Plano de la iglesia 2" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1A1A1A/FFFFFF?text=Plano+2'">
+                         </figure>
+                          <figure class="gallery-item">
+                             <img src="assets/img/Universo Nahua/historia-de-la-iglesia.jpg" alt="Historia de la iglesia" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1A1A1A/FFFFFF?text=Historia'">
+                         </figure>
+                          <figure class="gallery-item">
+                             <img src="assets/img/Universo Nahua/plano-iglesia3.jpg" alt="Plano de la iglesia 3" onerror="this.onerror=null;this.src='https://placehold.co/300x300/1A1A1A/FFFFFF?text=Plano+3'">
+                         </figure>
+                         <figure class="gallery-item highlight-2x2">
+                             <img src="assets/img/Universo Nahua/iglesia segun el plano.png" alt="Iglesia según el plano" onerror="this.onerror=null;this.src='https://placehold.co/600x600/8B5A2B/FFFFFF?text=Iglesia+del+Plano'">
+                         </figure>
+                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pasado" class="section">
+            <div class="container">
+                 <h2 class="section-title"><span>Zaragoza del Pasado</span></h2>
+                <div class="content-section">
+                    <div class="content-layout two-columns">
+                        <div>
+                            <h3>El Antiguo Palacio Municipal (1992-1994)</h3>
+                            <p>Una vista del antiguo palacio municipal, con un vehículo oficial de la época y un pequeño pino navideño al frente.</p>
+                            <p class="byline" style="font-size:0.9rem;">Fuente: AGEV / "San Isidro de Zaragoza" por Florentino Cruz Martínez.</p>
+                        </div>
+                        <div class="image-gallery ig-2-cols">
+                            <figure class="gallery-item"><img src="assets/img/Universo Nahua/original.jpg" alt="Palacio municipal en blanco y negro" onerror="this.onerror=null;this.src='https://placehold.co/400x400/808080/FFFFFF?text=Original'"></figure>
+                            <figure class="gallery-item"><img src="assets/img/Universo Nahua/reconstruida.png" alt="Palacio municipal a color" onerror="this.onerror=null;this.src='https://placehold.co/400x400/D2B48C/000000?text=Color'"></figure>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-section">
+                     <div class="content-layout two-columns">
+                          <div>
+                               <h3>Ayuntamiento Municipal (1985-1988)</h3>
+                               <p>Integrantes del Ayuntamiento: Narciso Gómez Antonio (Pdte. Mpal), Claudio Candelario Morales, Hilario Martinez Cruz+, Dionisio Ignacio Francisco+, Urso Martínez Hernández.</p>
+                               <p class="byline" style="font-size:0.9rem;">Aportación fotográfica: Familia Gómez Ignacio.</p>
+                          </div>
+                          <div class="image-gallery">
+                               <figure class="gallery-item">
+                                   <img src="assets/img/Universo Nahua/ayuntamiento.jpg" alt="Integrantes del Ayuntamiento 1985-1988" onerror="this.onerror=null;this.src='https://placehold.co/500x400/808080/FFFFFF?text=Ayuntamiento+1985'">
+                               </figure>
+                          </div>
+                     </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="imageModal" class="image-modal">
+        <span class="close-modal-img">&times;</span>
+        <img class="image-modal-content" id="expandedImg">
+    </div>
+
+<!-- SECCIÓN VISITAS HISTÓRICAS -->
+<section id="visitas-historicas" class="section">
+    <div class="container">
+        <h2 class="section-title"><span>Visitas Históricas</span></h2>
+        
+        <div class="content-section">
+            <div class="content-layout">
+                <div class="historical-container">
+                    <h3>Visitas Históricas de Gobernadores y Presidentes a Zaragoza, Veracruz</h3>
+                    <p>El municipio de Zaragoza, Veracruz, ha sido escenario de importantes visitas oficiales a lo largo de las décadas, marcando momentos significativos en su historia y desarrollo. Estas visitas han dejado huella en la infraestructura, la educación y el reconocimiento a las comunidades originarias que conforman su identidad.</p>
+                    
+                    <!-- Carrusel de visitas históricas -->
+                    <div class="carousel-container">
+                        <div class="carousel-track">
+                            <!-- Imágenes del 1 al 5 -->
+                            <div class="carousel-card">
+                                <img src="assets/img/Universo Nahua/Visita Jefes de Estado/1.jpg" alt="Visita histórica 1968" onclick="openModal('assets/img/Universo Nahua/Visita Jefes de Estado/1.jpg')">
+                                <p>1968 - Gobernador Fernando López Arias</p>
+                            </div>
+                            <div class="carousel-card">
+                                <img src="assets/img/Universo Nahua/Visita Jefes de Estado/2.jpg" alt="Visita histórica 1978" onclick="openModal('assets/img/Universo Nahua/Visita Jefes de Estado/2.jpg')">
+                                <p>1978 - Gobernador Rafael Hernández Ochoa</p>
+                            </div>
+                            <div class="carousel-card">
+                                <img src="assets/img/Universo Nahua/Visita Jefes de Estado/3.jpg" alt="Visita histórica 1995" onclick="openModal('assets/img/Universo Nahua/Visita Jefes de Estado/3.jpg')">
+                                <p>1995 - Gobernador Patricio Chirinos</p>
+                            </div>
+                            <div class="carousel-card">
+                                <img src="assets/img/Universo Nahua/Visita Jefes de Estado/4.jpg" alt="Visita histórica 2004" onclick="openModal('assets/img/Universo Nahua/Visita Jefes de Estado/4.jpg')">
+                                <p>2004 - Gobernador Miguel Alemán Velasco</p>
+                            </div>
+                            <div class="carousel-card">
+                                <img src="assets/img/Universo Nahua/Visita Jefes de Estado/5.jpg" alt="Visita histórica 2006" onclick="openModal('assets/img/Universo Nahua/Visita Jefes de Estado/5.jpg')">
+                                <p>2006 - Gobernador Fidel Herrera</p>
+                            </div>
+                            
+                            <!-- Imágenes destacadas del 6 al 9 -->
+
+                            <div class="carousel-card highlight-card">
+                                <img src="assets/img/Universo Nahua/Visita Jefes de Estado/6.jpg" alt="Visita presidencial 2025" onclick="openModal('assets/img/Universo Nahua/Visita Jefes de Estado/6.jpg')">
+                                <p>2025 - Presidenta Claudia Sheinbaum</p>
+                            </div>
+                            <div class="carousel-card highlight-card">
+                                <img src="assets/img/Universo Nahua/Visita Jefes de Estado/7.jpg" alt="Visita presidencial 2025" onclick="openModal('assets/img/Universo Nahua/Visita Jefes de Estado/7.jpg')">
+                                <p>2025 - Evento con comunidades</p>
+                            </div>
+                            <div class="carousel-card highlight-card">
+                                <img src="assets/img/Universo Nahua/Visita Jefes de Estado/8.jpg" alt="Visita presidencial 2025" onclick="openModal('assets/img/Universo Nahua/Visita Jefes de Estado/8.jpg')">
+                                <p>2025 - Recepción oficial</p>
+                            </div>
+                            <div class="carousel-card highlight-card">
+                                <img src="assets/img/Universo Nahua/Visita Jefes de Estado/9.jpg" alt="Visita presidencial 2025" onclick="openModal('assets/img/Universo Nahua/Visita Jefes de Estado/9.jpg')">
+                                <p>2025 - Momento histórico</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Lista de visitas históricas -->
+                    <div class="historical-list">
+                        <div class="visit-item">
+                            <div class="visit-year">1968</div>
+                            <div class="visit-details">
+                                <h4>Gobernador Lic. Fernando López Arias</h4>
+                                <p>Inauguró dos edificios escolares de la Escuela Primaria General Ignacio Zaragoza.</p>
+                                <p class="visit-mayor">Presidente Municipal: Antelmo Ramírez Francisco †</p>
+                            </div>
+                        </div>
+                        
+                        <div class="visit-item">
+                            <div class="visit-year">1978</div>
+                            <div class="visit-details">
+                                <h4>Gobernador Lic. Rafael Hernández Ochoa</h4>
+                                <p>Inauguró el antiguo Palacio Municipal, hoy ocupado por la comandancia municipal.</p>
+                                <p class="visit-mayor">Presidente Municipal: Tomás Cruz Cruz †</p>
+                            </div>
+                        </div>
+                        
+                        <div class="visit-item">
+                            <div class="visit-year">1995</div>
+                            <div class="visit-details">
+                                <h4>Gobernador Lic. Patricio Chirinos Calero</h4>
+                                <p>Encabezó la inauguración de las primeras calles pavimentadas en la zona centro del municipio.</p>
+                                <p class="visit-mayor">Presidente Municipal: Arsenio Sergio Cruz López †</p>
+                            </div>
+                        </div>
+                        
+                        <div class="visit-item">
+                            <div class="visit-year">2004</div>
+                            <div class="visit-details">
+                                <h4>Gobernador Lic. Miguel Alemán Velasco</h4>
+                                <p>Inauguró el actual Palacio Municipal.</p>
+                                <p class="visit-mayor">Presidente Municipal: Ramón Mateo Santiago †</p>
+                            </div>
+                        </div>
+                        
+                        <div class="visit-item">
+                            <div class="visit-year">2006</div>
+                            <div class="visit-details">
+                                <h4>Gobernador Lic. Fidel Herrera Beltrán</h4>
+                                <p>Colocó la primera piedra para la construcción del COBAEV 53 de Zaragoza.</p>
+                                <p class="visit-mayor">Presidenta Municipal: María Antonia Salomé Santiago</p>
+                            </div>
+                        </div>
+                        
+                        <div class="visit-item">
+                            <div class="visit-year">2018-2024</div>
+                            <div class="visit-details">
+                                <h4>Gobernador Lic. Cuitláhuac García Jiménez</h4>
+                                <p>Realizó una breve visita al municipio sin actos públicos.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="visit-item">
+                            <div class="visit-year">2024</div>
+                            <div class="visit-details">
+                                <h4>Gobernadora Ing. Norma Rocío Nahle García</h4>
+                                <p>Visitó Zaragoza durante su campaña política, antes de asumir el cargo.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="visit-item">
+                            <div class="visit-year">2016</div>
+                            <div class="visit-details">
+                                <h4>Expresidente Andrés Manuel López Obrador</h4>
+                                <p>Visitó el municipio en el marco de su campaña presidencial.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sección especial de la visita presidencial -->
+                    <div class="special-visit">
+                        <h3 class="special-title">Visita Presidencial de Claudia Sheinbaum P. – 6 de Julio de 2025</h3>
+                        <div class="visit-content">
+                            <p>Este domingo 6 de julio de 2025, Zaragoza, Veracruz, vivió un momento histórico al recibir la visita oficial de la actual presidenta de México, Dra. Claudia Sheinbaum Pardo, marcando un hecho sin precedentes para este municipio del sur del estado.</p>
+                            
+                            <p>Aproximadamente a la 14:00 de la tarde, la presidenta encabezó una importante asamblea del Fondo de Aportaciones para la Infraestructura Social para los Pueblos y Comunidades Indígenas, un evento que refleja el compromiso del Gobierno Federal con el desarrollo equitativo de los pueblos originarios.</p>
+                            
+                            <p>La mandataria fue recibida con entusiasmo por el alcalde C. Miguel Ángel Grajales Martínez, quien en su mensaje de bienvenida destacó la relevancia de la visita presidencial como un gesto de reconocimiento a la historia, cultura y necesidades de Zaragoza y sus comunidades indígenas. Asimismo, estuvo presente la Gobernadora del Estado, Ing. Norma Rocío Nahle García, o un representante en su nombre, así como diversas autoridades municipales, estatales y federales, y representantes de los pueblos originarios de la región.</p>
+                            
+                            <p>Durante su intervención, la Dra. Sheinbaum reiteró su compromiso de trabajar por una transformación con justicia social, impulsando programas de infraestructura, acceso a servicios básicos y fortalecimiento de los derechos de las comunidades indígenas. Se abordaron temas como caminos rurales, agua potable, salud y educación en regiones marginadas.</p>
+                            
+                            <p>El evento fue acompañado de expresiones culturales locales, muestras de gratitud por parte de la ciudadanía, y una destacada participación de jóvenes, mujeres y autoridades comunitarias que ven en este acto una oportunidad de inclusión y desarrollo regional.</p>
+                            
+                            <p>Con esta visita, la presidenta Claudia Sheinbaum Pardo se convierte en la primera mandataria nacional en funciones que pisa suelo zaragoceño para presidir un evento oficial, dejando una huella significativa en la historia contemporánea del municipio.</p>
+                        </div>
+                        
+                        <div class="cultural-note">
+                            <p>El municipio de Zaragoza antes llamado Xumuapan, se ha caracterizado por ser un pueblo con una identidad nahua, que desde su fundación ha ido fortaleciendo sus raíces étnicas a través de su vida comunitaria, practicando el Tapalewih como una esencia de su identidad.</p>
+                            <p>El pueblo de Zaragoza ha sido ejemplo en la región por ser un pueblo aguerrido y unido en las luchas sociales, y en las causas justas.</p>
+                        </div>
+                        
+                        <div class="nahuatl-phrase">
+                            <p><em>Tepa'xasi pa tuahtepe' weyitegiwah Claudiah Sheinbaum Pardoh</em></p>
+                        </div>
+                        
+                        <div class="photo-credits">
+                            <p>Elaboración y archivo fotográfico: Fortino Ramírez Ignacio.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal para imágenes ampliadas -->
+<div id="imageModal" class="image-modal">
+    <span class="close-modal-img" onclick="closeModal()">&times;</span>
+    <img class="image-modal-content" id="expandedImage">
+    <div id="imageCaption"></div>
+</div>
+
+<script>
+    // Función para abrir el modal con la imagen
+    function openModal(imgSrc) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('expandedImage');
+        modal.style.display = "block";
+        modalImg.src = imgSrc;
+        document.body.style.overflow = 'hidden';
+    }
+    
+    // Función para cerrar el modal
+    function closeModal() {
+        document.getElementById('imageModal').style.display = "none";
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Cerrar modal al hacer clic fuera de la imagen
+    window.onclick = function(event) {
+        const modal = document.getElementById('imageModal');
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+</script>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- SCRIPT PARA EL CARRUSEL ---
+        const track = document.querySelector('.carousel-track');
+        if (track) {
+            const numImages = 13;
+            const imagePath = 'assets/img/Universo Nahua/';
+            let imagesHTML = '';
+            for (let i = 1; i <= numImages; i++) {
+                imagesHTML += `
+                    <div class="carousel-card">
+                        <img src="${imagePath}${i}.jpg" alt="Arte en jícara ${i}" onerror="this.onerror=null;this.src='https://placehold.co/300x300/8B5A2B/FFFFFF?text=Jícara+${i}'">
+                    </div>`;
+            }
+            // Duplicar para el efecto de bucle infinito
+            track.innerHTML = imagesHTML + imagesHTML;
+        }
+
+        // --- SCRIPT PARA EL MODAL DE IMÁGENES (LIGHTBOX) ---
+        // Se aplica a TODAS las imágenes clickables de la página
+        const imageModal = document.getElementById("imageModal");
+        if (imageModal) {
+            const modalImg = document.getElementById("expandedImg");
+            // Se seleccionan TODAS las imágenes que deben abrir el modal
+            const galleryImages = document.querySelectorAll(".gallery-item img, .carousel-card img");
+            const closeModalBtn = document.querySelector(".close-modal-img");
+
+            galleryImages.forEach(img => {
+                img.onclick = function() {
+                    imageModal.style.display = "block";
+                    modalImg.src = this.src;
+                    modalImg.alt = this.alt;
+                }
+            });
+
+            if (closeModalBtn) {
+                closeModalBtn.onclick = function() { 
+                    imageModal.style.display = "none";
+                }
+            }
+
+            imageModal.onclick = function(event) {
+                if (event.target == imageModal) {
+                    imageModal.style.display = "none";
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

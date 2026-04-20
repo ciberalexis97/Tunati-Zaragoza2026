@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alfarería Nahua |Tunatí Zaragoza </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES Y ESTILOS BASE ===== */
+        :root {
+            --primary-color: #8B4513; /* Marrón silla de montar */
+            --primary-color-rgb: 139, 69, 19;
+            --secondary-color: #CD853F; /* Perú */
+            --accent-color: #A0522D;   /* Siena */
+            --accent-color-rgb: 160, 82, 45;
+            --dark-color: #1A1A1A;     /* Negro suavizado */
+            --light-color: #F5F5F5;
+            --text-dark: #333;
+            --overlay-color: rgba(0, 0, 0, 0.75);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* ===== RESET Y ESTRUCTURA ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', 'Noto Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--light-color);
+            background: 
+                linear-gradient(var(--overlay-color), var(--overlay-color)),
+                url('https://placehold.co/1920x1080/1A1A1A/333333?text=Fondo+Zaragoza') no-repeat center center/cover fixed;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        /* ===== COMPONENTES REUTILIZABLES ===== */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-family: 'Noto Serif', serif;
+            margin-bottom: 3rem;
+            color: var(--light-color);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        }
+
+        .section-title span {
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        /* ===== HEADER Y NAVEGACIÓN ===== */
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/img/alfareria/hero-alfareria.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 8rem 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-family: 'Noto Serif', serif;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+        .header p {
+            font-size: 1.25rem;
+            color: rgba(245, 245, 245, 0.9);
+        }
+
+        .navbar {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            display: block;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: 0.5rem;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--secondary-color);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .navbar a:hover {
+            color: var(--secondary-color);
+        }
+
+        .navbar a:hover::after {
+            width: 70%;
+        }
+        
+        /* SECCIÓN MEMORIA */
+        .memory-section {
+            background: rgba(36, 35, 35, 0.9);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            margin-bottom: 4rem;
+        }
+        
+        .memory-section h3 {
+            font-family: 'Noto Serif', serif;
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .memory-section p, .memory-section blockquote {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: rgba(245, 245, 245, 0.9);
+            max-width: 80ch;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .memory-section blockquote {
+            border-left: 4px solid var(--secondary-color);
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            padding-left: 1.5rem;
+            font-style: italic;
+            color: rgba(245, 245, 245, 0.85);
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .gallery-item {
+            background: var(--dark-color);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: contain;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .gallery-item figcaption {
+            font-style: italic;
+            color: rgba(245, 245, 245, 0.8);
+        }
+        
+        .attribution {
+            text-align: right;
+            margin-top: 3rem;
+            font-style: italic;
+            font-size: 1rem;
+            color: rgba(245, 245, 245, 0.7);
+        }
+
+        /* TÉCNICAS Y VIDEO */
+        .technique-card {
+            background: rgba(36, 35, 35, 0.85);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            text-align: center;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .technique-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .technique-card h3 {
+            color: var(--secondary-color);
+            font-family: 'Noto Serif', serif;
+            margin-bottom: 1rem;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .video-container {
+            margin-top: 4rem;
+            padding: 3rem;
+            background: rgba(36, 35, 35, 0.9);
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: var(--dark-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: rgba(245, 245, 245, 0.5);
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <h1>Alfarería Nahua</h1>
+        <p>El barro que guarda nuestras historias</p>
+    </header>
+    
+    <nav class="navbar">
+        <div class="container">
+             <ul>
+                <li><a href="#memoria">Memoria</a></li>
+                <li><a href="#tecnicas">Técnicas</a></li>
+                <li><a href="index.html">Página Principal</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <section id="memoria" class="section">
+            <div class="container">
+                <div class="memory-section">
+                     <h2 class="section-title"><span>La Alfarería en la Memoria</span></h2>
+                    <h3>Doña EPIFANIA BAUTISTA, un icono en la historia de la alfarería tradicional de Xumuapan.</h3>
+                    
+                    <div class="image-gallery">
+                        <figure class="gallery-item">
+                            <img src="assets/img/alfareria/crispina_y_su_hija.jpg" alt="Crispina Antonia Bautista y su hija Epifania" onerror="this.onerror=null;this.src='119010691_1651609188332625_2641587897618955012_n.jpg'">
+                            <figcaption>Crispina Antonia Bautista y su hija Epifania, alfareras de Zaragoza.</figcaption>
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="assets/img/alfareria/tierras_tropicales.jpg" alt="Artículo de periódico de 1994" onerror="this.onerror=null;this.src='119054875_1651627078330836_9133510970690625678_n.jpg'">
+                            <figcaption>Artículo de "Tierras Tropicales" (1994) mencionando a las artesanas.</figcaption>
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="assets/img/alfareria/alfarera.jpg" alt="Alfarera en tiempos recientes" onerror="this.onerror=null;this.src='119083244_1651610218332522_6342987875224422464_n.jpg'">
+                            <figcaption>Una de las portadoras de la tradición en tiempos más recientes.</figcaption>
+                        </figure>
+                    </div>
+
+                    <p>En el mes de abril del año 1994 por conducto de nuestra querida amiga Luisa Paré llegó una visita proveniente de Oregón, Estados Unidos. Ella es Hanneli Francis quien dijo ser representante de una empresa denominada Tierras Tropicales, comercializadora de artesanías de varios países latinoamericanos.</p>
+                    <p>En esa ocasión le toco visitar nuestro municipio ubicado en el sur de Veracruz y entre otros compañeros fuimos anfitriones de su estancia en el pueblo de Zaragoza. Estuvo aproximadamente dos semanas conviviendo con algunos habitantes en su mayoría artesanos y artesanas Zaragoceños y posteriormente se trasladó a Oaxaca.</p>
+                    <p>Como ella lo reafirma en un artículo que escribió en una revista llamada Tierras Tropicales, llego a nosotros con la finalidad de apoyar a las artesanas y de entre varias artesanías que conoció, el que más le impresionó y gustó fue el de la alfarería por su diseño, textura y color.</p>
+                    
+                    <p>El trabajo en mención fue de las alfareras contemporáneas del grupo “Xuchitahli”, Flor de la tierra, una generación de alfareras formada en talleres de aprendizaje y que revolucionaron con esta técnica ancestral la producción de nuevas piezas acordes a nuevos tiempos de la sociedad. Esta innovación motivó a Hanneli hacerles un pedido de un buen lote de variadas piezas para su envío por paquetería a Oregón, Estados Unidos. Esta fue la primera experiencia de exportación de artesanías de la alfarería de Zaragoza.</p>
+                    
+                    <p>Cabe describir que desde este tiempo empezaba a desarrollarse un cambio en el modo de práctica de vida de la artesanía. De ser una actividad individual o familiar pasaba a ser colectiva más allá de lazos consanguíneos y este fenómeno se estaba dando principalmente en el telar de cintura y la alfarería ocupada en su mayoría por mujeres.</p>
+
+                    <p>Aquí un fragmento del artículo traducido al español que ella escribió de su estancia por este lugar y una fotografía de la alfarera Epifanía Bautista (+) y su hija Crispina Antonio Bautista portadoras de la alfarería estricta y auténticamente tradicional de Xumuapan.</p>
+
+                    <blockquote>
+                        Abril 30 de 1994. Volé a la ciudad de México y conocí a un amigo Chano López, un mexicano nativo que ha importado y exportado arte antiguo, cerámica y artesanía fina entre México, Guatemala y Chicago, durante varios años.
+                        <br><br>
+                        Juntos tomamos el viaje en bus de seis horas a Xalapa, Veracruz, donde nos reunimos con Luisa Pare, una amiga y consultora que dirige los proyectos de Sierra Santa Marta (SSMP). SSMP está ayudando a las comunidades del sur de Veracruz a desarrollar nuevas técnicas agrícolas sostenibles, en un área con una larga historia de agricultura de roza y quema en suelos de bajo rendimiento. Como tal, tiene muchos contactos en el área y conoce muchos grupos de artesanos a pequeña escala. Ella nos dio una lista de posibilidades y nos envió en camino.
+                        <br><br>
+                        Ahora teníamos una dirección clara y nos dirigimos inmediatamente hacia el sur. Entre el follaje verde cálido y brumoso y el cacareo de las aves tropicales, viajamos a diferentes pueblos, buscando y encontrando a los artesanos, hablándoles sobre su arte y cómo podríamos ayudarlos. En el pequeño pueblo de Zaragoza, a las afueras de Minatitlán, nos recibió con gran entusiasmo.
+                        <br><br>
+                        La gente Nahua de Zaragoza era amable, abierta y generosa, y muy orgullosa de su arte. Tienen planes de formar una cooperativa colectiva y esperan construir una casa de artesanías donde puedan trabajar y exhibir sus productos. Son alfareros talentosos, tejedores de cestas y tejedores de textiles y están ansiosos por expandir un mercado para sus productos. Salimos cargados de muestras y sentimientos de cariño y buena voluntad.
+                        <br><br>
+                        Sin embargo, no todas las aldeas contaron historias de éxito. En un pueblo, cuando fuimos traídos para conocer a la artista soltera, ella era una anciana enferma a la que no le quedaban energías para su trabajo y ningún niño interesado en continuar la tradición. Fue doloroso presenciar la tristeza en sus ojos mientras hablaba de su forma de arte y cultura moribunda.
+                    </blockquote>
+                    
+                    <p class="attribution">
+                        <strong>Publicación de DPA - Xumuapan y Tiangisti Nucha Tamachiwalis</strong><br>
+                        Del muro de Facebook: Erasto Antonio
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tecnicas" class="section">
+            <div class="container">
+                <h2 class="section-title"><span>Técnicas y Procesos</span></h2>
+                <div class="grid-layout">
+                    <div class="technique-card">
+                        <h3>Modelado a Mano</h3>
+                        <p>La técnica más antigua, utilizando solo las manos y herramientas simples para dar forma al barro, sin el uso de torno.</p>
+                    </div>
+                     <div class="technique-card">
+                        <h3>Bruñido con Piedra</h3>
+                        <p>Después del secado inicial, las piezas se pulen con una piedra de río lisa para darles un brillo natural y cerrar los poros.</p>
+                    </div>
+                     <div class="technique-card">
+                        <h3>Quema a Cielo Abierto</h3>
+                        <p>Las piezas se cuecen en hornos rústicos o directamente sobre el suelo con leña, un método que otorga colores y texturas únicos.</p>
+                    </div>
+                </div>
+
+                <div class="video-container">
+                    <h3>Documental: El Lenguaje del Barro</h3>
+                    <div class="video-placeholder">
+                        <span>Próximamente...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+</body>
+</html>

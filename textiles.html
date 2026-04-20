@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Textiles Náhuatl | Tunatí Zaragoza </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES Y ESTILOS BASE (TEMA TEXTILES) ===== */
+        :root {
+            --primary-color: #8B0000; /* Rojo oscuro (cochinilla) */
+            --primary-color-rgb: 139, 0, 0;
+            --secondary-color: #4682B4; /* Azul acero (añil) */
+            --accent-color: #D2B48C;   /* Canela (tonos tierra) */
+            --accent-color-rgb: 210, 180, 140;
+            --dark-color: #1A1A1A;     /* Negro suavizado */
+            --light-color: #F5F5F5;
+            --overlay-color: rgba(0, 0, 0, 0.8);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* ===== RESET Y ESTRUCTURA ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Roboto', 'Noto Sans', sans-serif;
+            line-height: 1.7;
+            color: var(--light-color);
+            background: 
+                linear-gradient(var(--overlay-color), var(--overlay-color)),
+                url('https://placehold.co/1920x1080/1A1A1A/333333?text=Fondo+Zaragoza') no-repeat center center/cover fixed;
+        }
+        
+        /* ===== COMPONENTES REUTILIZABLES ===== */
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .section { padding: 4rem 0; }
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-family: 'Noto Serif', serif;
+            margin-bottom: 3rem;
+            color: var(--light-color);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        }
+        .section-title span { border-bottom: 3px solid var(--secondary-color); padding-bottom: 0.5rem; }
+
+        /* ===== HEADER Y NAVEGACIÓN ===== */
+        .header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/img/textiles/hero-textiles.jpg') no-repeat center center/cover;
+            color: white;
+            padding: 8rem 0;
+            text-align: center;
+        }
+        .header h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-family: 'Noto Serif', serif; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+        .header p { font-size: 1.25rem; color: rgba(245, 245, 245, 0.9); }
+        .navbar {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .navbar ul { display: flex; justify-content: center; list-style: none; flex-wrap: wrap; }
+        .navbar a { color: white; text-decoration: none; padding: 1rem 1.5rem; display: block; font-weight: 500; transition: var(--transition); position: relative; }
+        .navbar a::after { content: ''; position: absolute; bottom: 0.5rem; left: 50%; width: 0; height: 3px; background: var(--secondary-color); transition: var(--transition); transform: translateX(-50%); }
+        .navbar a:hover { color: var(--secondary-color); }
+        .navbar a:hover::after { width: 70%; }
+        
+        /* ===== DISEÑO DE SECCIONES DE CONTENIDO ===== */
+        .content-section {
+            background: rgba(36, 35, 35, 0.9);
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            margin-bottom: 4rem;
+        }
+        .content-section h3 {
+            font-family: 'Noto Serif', serif;
+            color: var(--secondary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .content-section p, .content-section li {
+            font-size: 1.1rem;
+            color: rgba(245, 245, 245, 0.9);
+            max-width: 80ch;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 1.5rem;
+        }
+        .content-section ul {
+             list-style: none;
+             padding-left: 0;
+        }
+         .content-section ul li {
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .content-section ul li::before {
+            content: '✓';
+            color: var(--secondary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .content-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        @media (max-width: 800px) {
+            .content-layout { grid-template-columns: 1fr; }
+        }
+        
+        /* ===== GALERÍA DE IMÁGENES ===== */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .gallery-item {
+            background: var(--dark-color);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: var(--transition);
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            cursor: pointer; /* Añadido para indicar que es clickeable */
+        }
+        .gallery-item figcaption {
+            font-style: italic;
+            color: rgba(245, 245, 245, 0.8);
+        }
+        
+        /* VIDEO */
+        .video-container { margin: 3rem auto; max-width: 900px; }
+        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
+        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        
+        /* ===== MODAL PARA IMÁGENES (LIGHTBOX) ===== */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+            transition: opacity 0.4s ease;
+        }
+
+        .image-modal-content {
+            margin: auto;
+            display: block;
+            width: auto;
+            max-width: 90%;
+            max-height: 85vh;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0)}
+            to {transform:scale(1)}
+        }
+
+        .close-modal-img {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close-modal-img:hover,
+        .close-modal-img:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <h1>Textiles Náhuatl</h1>
+        <p>El arte del telar de cintura que teje nuestra identidad</p>
+    </header>
+    
+    <nav class="navbar">
+        <div class="container">
+             <ul>
+                <li><a href="#cosmovision">Cosmovisión</a></li>
+                <li><a href="#herramientas">Herramientas</a></li>
+                <li><a href="#proceso">Proceso</a></li>
+                <li><a href="index.html">Página Principal</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main>
+        <!-- SECCIÓN 1: COSMOVISIÓN -->
+        <section id="cosmovision" class="section">
+            <div class="container">
+                <div class="content-section">
+                    <h2 class="section-title"><span>Cosmovisión del Traje Típico</span></h2>
+                    <div class="content-layout">
+                        <div class="text-content">
+                            <p>El traje típico de la mujer de Xumuapan se compone del Kueyi' (falda), paxah (faja) hechos con la técnica del Telar de cintura y la Kutun (blusa) de manta con bordados. Existe el traje de gala para fiestas y el de uso cotidiano, más sobrio.</p>
+                            <p>Nuestros ojos ven colores e hilos, pero hay un alto contenido de significados que se han ido perdiendo. Analizando los colores principales encontramos el rojo, amarillo, verde, blanco y negro, que forman parte de la función ritual y la comunicación entre lo divino y lo humano.</p>
+                        </div>
+                        <div class="image-gallery" style="grid-template-columns: 1fr;">
+                             <figure class="gallery-item">
+                                <img src="assets/img/textiles/traje-gala.png" alt="Traje de gala de Xumuapan" onerror="this.onerror=null;this.src='https://placehold.co/500x500/8B0000/FFFFFF?text=Traje+de+Gala'">
+                                <figcaption>Traje de gala de la mujer de Xumuapan.</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <ul>
+                        <li>El <strong>rojo</strong> es el color de Dios, del Sol.</li>
+                        <li>El <strong>negro</strong> es el color de la Noche, lugar donde muere el Sol.</li>
+                        <li>El <strong>blanco</strong> es el color de la pureza, del frío, de las heladas del norte.</li>
+                        <li>El <strong>amarillo</strong> es el color de la fertilidad y de los vientos cálidos del sur.</li>
+                        <li>El <strong>verde</strong> es el color de la vida, donde se intersectan el camino de Dios y de los seres humanos.</li>
+                    </ul>
+                    <p>En cuanto a las flores, éstas significan honestidad y sinceridad en la relación con nuestros semejantes y con la naturaleza. Este es el espíritu que habita en estas prendas, con un alto contenido de significados que debemos transmitir a todas las generaciones.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: TZUTZUPAS -->
+        <section id="herramientas" class="section">
+            <div class="container">
+                <div class="content-section">
+                    <h2 class="section-title"><span>Tzutzupas: Herramientas del Telar</span></h2>
+                    <p>Es el nombre que tiene en lengua nahua una de las herramientas del arte en telar de cintura. El juego de herramientas los elaboramos en nuestro taller. En esta ocasión les presentamos el Tzutzupas en dos tipos de madera: el acabado en color negro es de madera de corazón azul y el color café es de madera de chicozapote, original y tradicional en esta técnica de telar.</p>
+                    <div class="image-gallery">
+                        <figure class="gallery-item">
+                            <img src="assets/img/textiles/tzutzupas-1.jpg" alt="Herramienta Tzutzupas de corazón azul" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1A1A1A/FFFFFF?text=Tzutzupas+Negro'">
+                            <figcaption>Tzutzupas de corazón azul (negro).</figcaption>
+                        </figure>
+                        <figure class="gallery-item">
+                           <img src="assets/img/textiles/tzutzupas-2.jpg" alt="Herramienta Tzutzupas de chicozapote" onerror="this.onerror=null;this.src='https://placehold.co/400x400/D2B48C/000000?text=Tzutzupas+Caf%C3%A9'">
+                            <figcaption>Tzutzupas de chicozapote (café).</figcaption>
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="assets/img/textiles/tzutzupas-3.jpg" alt="Juego de herramientas de telar de cintura" onerror="this.onerror=null;this.src='https://placehold.co/400x400/4682B4/FFFFFF?text=Herramientas'">
+                            <figcaption>Juego completo de herramientas.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: PROCESO -->
+        <section id="proceso" class="section">
+            <div class="container">
+                <div class="content-section">
+                    <h2 class="section-title"><span>Elaboración del Hilo de Algodón</span></h2>
+                    <h3>Tapuchindilis I'rka' pah taihkih</h3>
+                    <p>Esta parte básica de la industria del Telar de Cintura ha desaparecido en nuestro pueblo. La última TAIHKINI (Tejedora) fue la Señora Aristea Martinez. La XIWATAGETZAH que aún vive y es una reliquia se llama EPITACIA MARTINEZ, hermana de ARISTEA. Son iconos del telar de cintura de Xumuapan.</p>
+                    <div class="image-gallery">
+                        <figure class="gallery-item">
+                            <img src="assets/img/textiles/proceso-1.jpg" alt="Algodón natural (I'xka')" onerror="this.onerror=null;this.src='https://placehold.co/400x400/F5F5F5/000000?text=I%27xka%27'">
+                            <figcaption>I'xka' - Algodón.</figcaption>
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="assets/img/textiles/proceso-2.jpg" alt="Malacate para hilar (Malaga')" onerror="this.onerror=null;this.src='https://placehold.co/400x400/8B4513/FFFFFF?text=Malaga%27'">
+                            <figcaption>Malaga' - Malacate.</figcaption>
+                        </figure>
+                        <figure class="gallery-item">
+                            <img src="assets/img/textiles/proceso-3.jpg" alt="Mujer hilando (Siwa' ne Tapuchindia)" onerror="this.onerror=null;this.src='https://placehold.co/400x400/A0522D/FFFFFF?text=Siwa%27+ne+Tapuchindia'">
+                            <figcaption>Siwa' ne Tapuchindia - Mujer hilando.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SECCIÓN DE VIDEO ORIGINAL -->
+        <section class="section">
+             <div class="container">
+                  <h2 class="section-title"><span>El Proceso de Creación</span></h2>
+                  <div class="video-container">
+                      <div class="video-wrapper">
+                          <iframe width="100%" height="400" src="https://www.youtube.com/embed/oZFbwI2UYeo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+                  </div>
+             </div>
+        </section>
+    </main>
+
+    <!-- Modal para expandir imágenes -->
+    <div id="imageModal" class="image-modal">
+        <span class="close-modal-img">&times;</span>
+        <img class="image-modal-content" id="expandedImg">
+    </div>
+
+<script>
+    // Script para el modal de imágenes
+    document.addEventListener('DOMContentLoaded', function() {
+        const imageModal = document.getElementById("imageModal");
+        if (!imageModal) return;
+
+        const modalImg = document.getElementById("expandedImg");
+        const galleryImages = document.querySelectorAll(".gallery-item img");
+        const span = document.getElementsByClassName("close-modal-img")[0];
+
+        galleryImages.forEach(img => {
+            img.onclick = function(){
+                imageModal.style.display = "block";
+                modalImg.src = this.src;
+            }
+        });
+
+        if (span) {
+            span.onclick = function() { 
+                imageModal.style.display = "none";
+            }
+        }
+
+        // Cierra el modal si se hace clic fuera de la imagen
+        imageModal.onclick = function(event) {
+            if (event.target == imageModal) {
+                imageModal.style.display = "none";
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

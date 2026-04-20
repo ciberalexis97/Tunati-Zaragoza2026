@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Cestería tradicional de Zaragoza, Veracruz - Arte tejido con mimbre y bejuco blanco. Conoce el trabajo del Maestro Don Bruno.">
+    <meta name="keywords" content="cestería, mimbre, bejuco, artesanía, Zaragoza, Veracruz, náhuatl, Don Bruno">
+    <title>Cestería Tradicional · Tunatí Zaragoza</title>
+
+    <!-- Fuentes y Font Awesome -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================
+       VARIABLES (Mismas que el index)
+       ========================================= */
+        :root {
+            --primary: #2E8B57;
+            --primary-light: #3aad6e;
+            --secondary: #FF8C00;
+            --accent: #8B5A2B;
+            --gold: #DAA520;
+            --gold-light: #f0c040;
+            --dark: #0c0c0c;
+            --dark-mid: #141414;
+            --dark-card: rgba(16, 16, 16, 0.7);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.06);
+            --light: #F0F0F0;
+            --text-muted: rgba(240, 240, 240, 0.55);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --radius-sm: 12px;
+            --radius: 24px;
+            --radius-lg: 36px;
+            --shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+            --shadow-hover: 0 30px 60px -10px rgba(218, 165, 32, 0.1);
+        }
+
+        /* =========================================
+       RESET Y ESTILOS BASE
+       ========================================= */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--light);
+            background-color: var(--dark);
+            background-image:
+                radial-gradient(circle at 30% 20%, rgba(218, 165, 32, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(46, 139, 87, 0.06) 0%, transparent 50%),
+                linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.85)),
+                url('assets/img/fondo principal Zaragoza.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            line-height: 1.75;
+            overflow-x: hidden;
+            padding-top: 30px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Cinzel', serif;
+            line-height: 1.2;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-wrapper {
+            background: rgba(12, 12, 12, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-lg);
+            margin: 2rem auto;
+            max-width: 1200px;
+            width: 94%;
+            overflow: hidden;
+            box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .section-wrapper:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 140, 0, 0.1);
+        }
+
+        .sec-title {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            color: var(--light);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .sec-title span {
+            background: linear-gradient(120deg, var(--secondary), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        .sec-desc {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 3rem;
+            letter-spacing: 0.5px;
+        }
+
+        .sec-label {
+            display: inline-block;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .oro-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), var(--gold));
+            border-radius: 2px;
+            margin: 0.75rem auto 0;
+        }
+
+        /* =========================================
+       BOTONES
+       ========================================= */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: 1.5px solid transparent;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-outline {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: #111;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.35);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: #111;
+            font-weight: 700;
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-light);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px var(--gold);
+        }
+
+        /* =========================================
+       NAVBAR (Simplificada para página hija)
+       ========================================= */
+        .page-navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(8, 8, 8, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 60px;
+            padding: 0.6rem 1.8rem;
+            width: auto;
+            max-width: 90%;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .page-navbar.scrolled {
+            background: rgba(8, 8, 8, 0.85);
+            border-color: rgba(218, 165, 32, 0.15);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            top: 10px;
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .nav-back:hover {
+            color: var(--secondary);
+            transform: translateX(-3px);
+        }
+
+        .nav-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--light);
+            letter-spacing: 2px;
+        }
+
+        .nav-title i {
+            color: var(--secondary);
+            margin-right: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .page-navbar {
+                padding: 0.5rem 1.2rem;
+                gap: 1rem;
+            }
+
+            .nav-title {
+                font-size: 0.85rem;
+            }
+
+            body {
+                padding-top: 70px;
+            }
+        }
+
+        /* =========================================
+       HERO / PORTADA
+       ========================================= */
+        .hero-cesteria {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 4rem 1.5rem;
+        }
+
+        .hero-cesteria-content {
+            max-width: 900px;
+            text-align: center;
+            animation: fadeUp 1.2s ease both;
+        }
+
+        .hero-img-wrapper {
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(218, 165, 32, 0.2);
+            box-shadow: var(--shadow);
+        }
+
+        .hero-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .hero-img-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        .sec-title span {
+  background: linear-gradient(120deg, var(--secondary), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
+
+.hero-cesteria h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  margin-bottom: 0.8rem;
+  background: linear-gradient(135deg, #fff 30%, var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* =========================================
+       SECCIÓN EL ARTE (Texto centrado)
+       ========================================= */
+        .arte-texto {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            color: rgba(245, 245, 245, 0.9);
+            line-height: 1.8;
+        }
+
+        /* =========================================
+       SECCIÓN EL MAESTRO (Don Bruno)
+       ========================================= */
+        .maestro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .maestro-img {
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+        }
+
+        .maestro-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .maestro-img:hover img {
+            transform: scale(1.03);
+        }
+
+        .maestro-texto h3 {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .maestro-texto p {
+            font-size: 1.05rem;
+            color: rgba(245, 245, 245, 0.85);
+            margin-bottom: 1.2rem;
+            text-align: justify;
+        }
+
+        .maestro-quote {
+            font-style: italic;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--secondary);
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .maestro-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* =========================================
+       GALERÍA (Grid tipo Pinterest/Netflix)
+       ========================================= */
+        .galeria-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.02);
+            transition: var(--transition);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 6px 15px -5px var(--primary);
+        }
+
+        /* Grid Masonry estilo Pinterest */
+        .galeria-masonry {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .galeria-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(20, 20, 20, 0.4);
+            backdrop-filter: blur(8px);
+            transition: var(--transition);
+            cursor: pointer;
+            animation: cardEntrance 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .galeria-item:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .galeria-item:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .galeria-item:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+
+        .galeria-item:nth-child(4) {
+            animation-delay: 0.2s;
+        }
+
+        .galeria-item:nth-child(5) {
+            animation-delay: 0.25s;
+        }
+
+        .galeria-item:nth-child(6) {
+            animation-delay: 0.3s;
+        }
+
+        .galeria-item:nth-child(7) {
+            animation-delay: 0.35s;
+        }
+
+        .galeria-item:nth-child(8) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes cardEntrance {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .galeria-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: var(--shadow-hover);
+            border-color: rgba(218, 165, 32, 0.25);
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 1 / 1.2;
+            transition: transform 0.6s ease;
+        }
+
+        .galeria-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .galeria-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .galeria-item:hover .galeria-item-overlay {
+            opacity: 1;
+        }
+
+        .galeria-item-overlay span {
+            color: var(--light);
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            display: block;
+        }
+
+        .galeria-item-overlay small {
+            color: var(--gold);
+            font-size: 0.75rem;
+        }
+
+        /* =========================================
+       SECCIÓN MATERIALES
+       ========================================= */
+        .materiales-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .material-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: rgba(20, 20, 20, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .material-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(218, 165, 32, 0.2);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .material-icon {
+            font-size: 2.8rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .material-card h4 {
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .material-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 600px) {
+            .materiales-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* =========================================
+       VALOR CULTURAL
+       ========================================= */
+        .valor-box {
+            max-width: 750px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            background: rgba(46, 139, 87, 0.05);
+            border: 1px solid rgba(46, 139, 87, 0.15);
+            border-radius: var(--radius);
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .valor-box i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .valor-box p {
+            font-size: 1.1rem;
+            color: rgba(245, 245, 245, 0.9);
+            line-height: 1.8;
+        }
+
+        /* =========================================
+       SECCIÓN FINAL
+       ========================================= */
+        .final-box {
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .final-box p {
+            font-size: 1.2rem;
+            color: var(--light);
+            font-family: 'Cinzel', serif;
+        }
+
+        .final-box i {
+            color: var(--secondary);
+            margin: 0 0.3rem;
+        }
+
+        /* =========================================
+       ANIMACIONES
+       ========================================= */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Lightbox simple */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-height: 85vh;
+            max-width: 90vw;
+            border-radius: var(--radius-sm);
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            background: var(--secondary);
+        }
+
+        /* Footer simple */
+        .page-footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 3rem;
+        }
+
+        .page-footer a {
+            color: var(--gold);
+            transition: color 0.2s;
+        }
+
+        .page-footer a:hover {
+            color: var(--secondary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============ NAVBAR FLOTANTE ============ -->
+    <nav class="page-navbar" id="pageNavbar">
+        <a href="index.html" class="nav-back">
+            <i class="fas fa-arrow-left"></i>
+            <span>Volver</span>
+        </a>
+        <div class="nav-title">
+            <i class="fas fa-basket-shopping"></i>
+            Cestería Zaragoza
+        </div>
+    </nav>
+
+    <!-- ============ SECCIÓN 1: PORTADA (HERO) ============ -->
+    <section class="hero-cesteria">
+        <div class="hero-cesteria-content">
+            <div class="hero-img-wrapper reveal">
+                <img src="assets/img/cesteria/portada-cesteria.jpg" alt="Cestería tradicional de Zaragoza"
+                    loading="eager">
+            </div>
+            <h1 class="reveal reveal-delay-1">Cestería tradicional</h1>
+            <p class="hero-subtitle reveal reveal-delay-2">de Zaragoza, Veracruz</p>
+            <div class="oro-line reveal reveal-delay-2" style="margin-top: 1.5rem;"></div>
+            <p class="reveal reveal-delay-3" style="margin-top: 1.5rem; color: var(--text-muted);">
+                <i class="fas fa-leaf" style="color: var(--secondary); margin-right: 0.5rem;"></i>
+                Arte tejido con mimbre y bejuco blanco
+                <i class="fas fa-leaf" style="color: var(--secondary); margin-left: 0.5rem;"></i>
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ SECCIÓN 2: EL ARTE ============ -->
+    <section id="el-arte">
+        <div class="section-wrapper">
+            <div style="padding: 3.5rem 2.5rem;">
+                <div style="text-align: center; margin-bottom: 1rem;" class="reveal">
+                    <span class="sec-label">Tradición viva</span>
+                    <h2 class="sec-title">El <span>Arte</span></h2>
+                    <div class="oro-line"></div>
+                </div>
+                <div class="arte-texto reveal">
+                    <p>La cestería es una tradición artesanal transmitida por generaciones en Zaragoza.<br>
+                        Utilizando materiales naturales como el mimbre y el bejuco blanco, los artesanos crean piezas
+                        únicas que combinan utilidad y belleza.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECCIÓN 3: EL MAESTRO (DON BRUNO) ============ -->
+    <section id="el-maestro">
+        <div class="section-wrapper">
+            <div style="padding: 3.5rem 2.5rem;">
+                <div style="text-align: center; margin-bottom: 2.5rem;" class="reveal">
+                    <span class="sec-label">Guardián de la tradición</span>
+                    <h2 class="sec-title">El <span>Maestro</span></h2>
+                    <div class="oro-line"></div>
+                </div>
+
+                <div class="maestro-grid">
+                    <div class="maestro-img reveal">
+                        <img src="assets/img/cesteria/don-bruno.jpg" alt="Don Bruno - Maestro cestero de Zaragoza"
+                            loading="lazy">
+                    </div>
+                    <div class="maestro-texto reveal reveal-delay-1">
+                        <h3>Don Bruno</h3>
+                        <p>Don Bruno es uno de los principales exponentes de la cestería en la comunidad de Zaragoza.
+                        </p>
+                        <p>Su trabajo refleja años de experiencia, dedicación y amor por esta tradición que ha pasado de
+                            generación en generación.</p>
+                        <div class="maestro-quote">
+                            <i class="fas fa-quote-left" style="margin-right: 0.5rem; opacity: 0.5;"></i>
+                            Cada pieza lleva el alma de quien la teje.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECCIÓN 4: GALERÍA (LA MÁS IMPORTANTE) ============ -->
+    <section id="galeria-cesteria">
+        <div class="section-wrapper">
+            <div style="padding: 3.5rem 2rem;">
+                <div style="text-align: center; margin-bottom: 2rem;" class="reveal">
+                    <span class="sec-label">Colección de piezas únicas</span>
+                    <h2 class="sec-title"><span>Galería</span></h2>
+                    <p class="sec-desc">Canastas · Figuras · Proceso · Materiales</p>
+                    <div class="oro-line"></div>
+                </div>
+
+                <!-- Filtros -->
+                <div class="galeria-filters reveal">
+                    <button class="filter-btn active" data-filter="todos">Todos</button>
+                    <button class="filter-btn" data-filter="canastas">Canastas</button>
+                    <button class="filter-btn" data-filter="figuras">Figuras</button>
+                    <button class="filter-btn" data-filter="proceso">Proceso</button>
+                    <button class="filter-btn" data-filter="materiales">Materiales</button>
+                </div>
+
+                <!-- Grid Masonry -->
+                <div class="galeria-masonry" id="galeriaMasonry">
+                    <!-- Canastas -->
+                    <div class="galeria-item" data-category="canastas">
+                        <img src="assets/img/cesteria/canasta-1.jpg" alt="Canasta tradicional de mimbre" loading="lazy">
+                        <div class="galeria-item-overlay"><span>Canasta tradicional</span><small>Mimbre</small></div>
+                    </div>
+                    <div class="galeria-item" data-category="canastas">
+                        <img src="assets/img/cesteria/canasta-2.jpg" alt="Canasta grande para cosecha" loading="lazy">
+                        <div class="galeria-item-overlay"><span>Canasta cosechera</span><small>Bejuco blanco</small>
+                        </div>
+                    </div>
+                    <div class="galeria-item" data-category="canastas">
+                        <img src="assets/img/cesteria/canasta-3.jpg" alt="Canasta decorativa" loading="lazy">
+                        <div class="galeria-item-overlay"><span>Canasta decorativa</span><small>Mimbre tejido</small>
+                        </div>
+                    </div>
+                    <div class="galeria-item" data-category="canastas">
+                        <img src="assets/img/cesteria/canasta-4.jpg" alt="Canasta con tapa" loading="lazy">
+                        <div class="galeria-item-overlay"><span>Canasta con tapa</span><small>Bejuco</small></div>
+                    </div>
+
+                    <!-- Figuras -->
+                    <div class="galeria-item" data-category="figuras">
+                        <img src="assets/img/cesteria/figura-1.jpg" alt="Figura decorativa de bejuco" loading="lazy">
+                        <div class="galeria-item-overlay"><span>Figura decorativa</span><small>Bejuco blanco</small>
+                        </div>
+                    </div>
+                    <div class="galeria-item" data-category="figuras">
+                        <img src="assets/img/cesteria/figura-2.jpg" alt="Figura de animal" loading="lazy">
+                        <div class="galeria-item-overlay"><span>Figura zoomorfa</span><small>Mimbre</small></div>
+                    </div>
+                    <div class="galeria-item" data-category="figuras">
+                        <img src="assets/img/cesteria/figura-3.jpg" alt="Figura artesanal" loading="lazy">
+                        <div class="galeria-item-overlay"><span>Figura artesanal</span><small>Bejuco</small></div>
+                    </div>
+
+                    <!-- Proceso -->
+                    <div class="galeria-item" data-category="proceso">
+                        <img src="assets/img/cesteria/proceso-1.jpg" alt="Preparación del mimbre" loading="lazy">
+                        <div class="galeria-item-overlay"><span>Preparación</span><small>Mimbre</small></div>
+                    </div>
+                    <div class="galeria-item" data-category="proceso">
+                        <img src="assets/img/cesteria/proceso-2.jpg" alt="Tejiendo la base" loading="lazy">
+                        <div class="galeria-item-overlay"><span>Tejiendo la base</span><small>Proceso</small></div>
+                    </div>
+                    <div class="galeria-item" data-category="proceso">
+                        <img src="assets/img/cesteria/proceso-3.jpg" alt="Detalle del tejido" loading="lazy">
+                        <div class="galeria-item-overlay"><span>Detalle del tejido</span><small>Proceso</small></div>
+                    </div>
+
+                    <!-- Materiales -->
+                    <div class="galeria-item" data-category="materiales">
+                        <img src="assets/img/cesteria/material-mimbre.jpg" alt="Mimbre natural" loading="lazy">
+                        <div class="galeria-item-overlay"><span>Mimbre</span><small>Material natural</small></div>
+                    </div>
+                    <div class="galeria-item" data-category="materiales">
+                        <img src="assets/img/cesteria/material-bejuco.jpg" alt="Bejuco blanco" loading="lazy">
+                        <div class="galeria-item-overlay"><span>Bejuco blanco</span><small>Material natural</small>
+                        </div>
+                    </div>
+                    <div class="galeria-item" data-category="materiales">
+                        <img src="assets/img/cesteria/material-herramientas.jpg" alt="Herramientas tradicionales"
+                            loading="lazy">
+                        <div class="galeria-item-overlay"><span>Herramientas</span><small>Tradicionales</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECCIÓN 5: MATERIALES ============ -->
+    <section id="materiales-seccion">
+        <div class="section-wrapper">
+            <div style="padding: 3.5rem 2.5rem;">
+                <div style="text-align: center; margin-bottom: 2.5rem;" class="reveal">
+                    <span class="sec-label">De la naturaleza a tus manos</span>
+                    <h2 class="sec-title"><span>Materiales</span></h2>
+                    <p class="sec-desc">Las piezas se elaboran con:</p>
+                    <div class="oro-line"></div>
+                </div>
+
+                <div class="materiales-grid">
+                    <div class="material-card reveal">
+                        <div class="material-icon"><i class="fas fa-leaf"></i></div>
+                        <h4>Mimbre</h4>
+                        <p>Fibra vegetal flexible y resistente, ideal para tejidos finos y duraderos.</p>
+                    </div>
+                    <div class="material-card reveal reveal-delay-1">
+                        <div class="material-icon"><i class="fas fa-tree"></i></div>
+                        <h4>Bejuco blanco</h4>
+                        <p>Enredadera tropical que aporta estructura y firmeza a las piezas.</p>
+                    </div>
+                    <div class="material-card reveal reveal-delay-2">
+                        <div class="material-icon"><i class="fas fa-hands"></i></div>
+                        <h4>Técnicas tradicionales</h4>
+                        <p>Tejido manual transmitido de generación en generación.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECCIÓN 6: VALOR CULTURAL ============ -->
+    <section id="valor-cultural">
+        <div class="section-wrapper">
+            <div style="padding: 3.5rem 2.5rem;">
+                <div class="valor-box reveal">
+                    <i class="fas fa-landmark"></i>
+                    <p>Esta artesanía forma parte del patrimonio cultural de la región.<br>
+                        Sin embargo, su práctica ha disminuido con el paso del tiempo, por lo que su preservación es
+                        fundamental.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECCIÓN 7: FINAL ============ -->
+    <section id="final">
+        <div class="section-wrapper">
+            <div style="padding: 2.5rem 2.5rem;">
+                <div class="final-box reveal">
+                    <p>
+                        <i class="fas fa-feather-alt"></i>
+                        Preservar este arte es mantener viva la historia de nuestra comunidad.
+                        <i class="fas fa-feather-alt"></i>
+                    </p>
+                    <div style="margin-top: 2rem;">
+                        <a href="index.html#artesanias" class="btn btn-outline">
+                            <i class="fas fa-arrow-left"></i> Volver a Artesanías
+                        </a>
+                        <a href="index.html#contacto" class="btn btn-gold" style="margin-left: 1rem;">
+                            <i class="fas fa-comments"></i> Contáctanos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="page-footer">
+        <p>© 2026 Tunatí Zaragoza · <a href="index.html">Inicio</a> · Cestería tradicional de Xumuapan</p>
+        <p style="margin-top: 0.5rem; font-size: 0.75rem;">
+            <i class="fas fa-heart" style="color: var(--secondary);"></i>
+            Preservando nuestras raíces Nahuas
+        </p>
+    </footer>
+
+    <!-- ============ LIGHTBOX ============ -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+        <img id="lightboxImg" src="" alt="">
+    </div>
+
+    <!-- ============ SCRIPTS ============ -->
+    <script>
+        // Reveal on scroll
+        const revealEls = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    revealObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        revealEls.forEach(el => revealObserver.observe(el));
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('pageNavbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Filtros de galería
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galeriaItems = document.querySelectorAll('.galeria-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                const filter = this.getAttribute('data-filter');
+
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                galeriaItems.forEach(item => {
+                    if (filter === 'todos' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Lightbox para galería
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        galeriaItems.forEach(item => {
+            item.addEventListener('click', function () {
+                const img = this.querySelector('img');
+                if (img) {
+                    lightboxImg.src = img.src;
+                    lightboxImg.alt = img.alt;
+                    lightbox.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+                lightbox.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
